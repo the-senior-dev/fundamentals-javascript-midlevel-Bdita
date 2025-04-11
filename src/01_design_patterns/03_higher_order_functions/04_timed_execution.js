@@ -19,8 +19,26 @@ console.log(output); // Output should be something like { result: 7, time: 0.123
 */
 
 function timeExecution(fn) {
-    // Your code here
-}
+  // my solution didn't need ...args to be passed why?
+  return function () {
+    const start = performance.now();
+    const result = fn(...arguments);
+    const end = performance.now();
+    const time = end - start;
 
+    return {
+      result,
+      time,
+    };
+  };
+
+  // Your Solution
+  //   return function (...args) {
+  //     const start = new Date();
+  //     const result = fn(...args);
+  //     const time = new Date() - start;
+  //     return { result, time };
+  //   };
+}
 
 module.exports = timeExecution;

@@ -11,7 +11,15 @@ and wait for each callback to execute before moving on to the next.
 */
 
 async function forEachAsync(array, callback) {
-    // Implement this function
+  const resolvedPromiseArr = [];
+
+  for (let i = 0; i < array.length; i++) {
+    const callbackResponse = await callback(array[i], i, array);
+    resolvedPromiseArr.push(callbackResponse);
+  }
+  return resolvedPromiseArr;
 }
 
 module.exports = forEachAsync;
+
+// this behaves more like mapAsync, don't return array for forEachAsync as for each doesn't return anything

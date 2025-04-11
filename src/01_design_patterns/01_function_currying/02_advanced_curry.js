@@ -13,10 +13,17 @@ either all at once or one at a time. For example:
 
 // HINT: You will need to use recursion to solve this problem!
 function curry(fn) {
-    // Your code here
+  // Your code here
+  return function curriedFunc(...args) {
+    if (args.length >= fn.length) {
+      return fn(...args);
+    } else {
+      return function (...args2) {
+        return curriedFunc(...args, ...args2);
+      };
+    }
+  };
 }
-  
-
 // Example
 /*
 const add = (a, b, c) => a + b + c;
@@ -26,4 +33,3 @@ console.log(curriedAdd(1, 2, 3)); // Output should also be 6
 */
 
 module.exports = curry;
-
