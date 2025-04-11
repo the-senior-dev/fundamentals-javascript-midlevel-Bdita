@@ -14,16 +14,12 @@ async function forEachAsync(array, callback) {
   const resolvedPromiseArr = [];
 
   for (let i = 0; i < array.length; i++) {
-    // execute callback with mentioned condition
     const callbackResponse = await callback(array[i], i, array);
-    if (callbackResponse) resolvedPromiseArr.push();
+    resolvedPromiseArr.push(callbackResponse);
   }
-
-  if (resolvedPromiseArr.length === array.length) {
-    return new Promise((resolve) => {
-      resolve(resolvedPromiseArr);
-    });
-  }
+  return resolvedPromiseArr;
 }
 
 module.exports = forEachAsync;
+
+// this behaves more like mapAsync, don't return array for forEachAsync as for each doesn't return anything
